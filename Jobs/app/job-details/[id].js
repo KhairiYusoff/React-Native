@@ -1,4 +1,4 @@
-import { Stack, useRouter, useSearchParams } from "expo-router";
+import { Stack, useRouter, useGlobalSearchParams } from "expo-router";
 import React, { useState } from 'react'
 import useFetch from "../../hook/useFetch";
 import {
@@ -22,7 +22,7 @@ import { COLORS, icons, SIZES } from "../../constants";
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
 const JobDetails = () => {
-    const params = useSearchParams()
+    const params = useGlobalSearchParams()
     const router = useRouter();
 
     const { data, isLoading, error, refetch } = useFetch("job-details", {
@@ -73,7 +73,7 @@ const JobDetails = () => {
                         <ScreenHeaderBtn
                             iconUrl={icons.left}
                             dimension="60%"
-                            handlePress={() => router.back}
+                            handlePress={() => router.back()}
                         />
                     ),
                     headerRight: () => (
