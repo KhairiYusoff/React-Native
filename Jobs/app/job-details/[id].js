@@ -1,5 +1,5 @@
 import { Stack, useRouter, useGlobalSearchParams } from "expo-router";
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import useFetch from "../../hook/useFetch";
 import {
     Company,
@@ -32,7 +32,11 @@ const JobDetails = () => {
     const [activeTab, setActiveTab] = useState(tabs[0]);
     const [refreshing, setRefreshing] = useState(false)
 
-    const onRefresh = () => { }
+    const onRefresh = useCallback(() => {
+        setRefreshing(true)
+        refetch()
+        setRefreshing(false)
+    }, [])
 
     const displayTabContent = () => {
         switch (activeTab) {
